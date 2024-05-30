@@ -8,37 +8,42 @@ public class Car {
     public int positionX;
     public int positionY;
     private Color color;
-    int carMoving= 1;
+
+    public boolean isCarMoving() {
+        return carMoving;
+    }
+
+    public void setCarMoving(boolean carMoving) {
+        this.carMoving = carMoving;
+    }
+
+    private boolean carMoving;
 
 
-    public Car (int width, int height, int positionY, int positionX, int carMoving, Color color) {
+    public Car(int width, int height, int positionY, int positionX, Color color) {
         this.positionX = positionX;
         this.positionY = positionY;
         this.width = width;
         this.height = height;
         this.color = color;
-        this.carMoving = carMoving;
+        this.carMoving = false;
     }
 
-    public void drive () {
+    public void drive() {
 
         if (this.width < this.height) {
-                this.positionY+=1;
+            this.positionY += 1;
         }
 
         if (this.width > this.height) {
-            if (this.positionX == 110) {
-                this.positionX= 110;
-            } else {
-                this.positionX+=1;
-            }
-        }
+            this.positionX += 1;
 
+        }
 
 
     }
 
-    public void draw (Graphics g) {
+    public void draw(Graphics g) {
         g.setColor(color);
         g.fillRect(positionX, positionY, width, height);
     }
