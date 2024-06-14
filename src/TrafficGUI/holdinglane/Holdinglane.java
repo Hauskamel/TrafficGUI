@@ -3,8 +3,8 @@ package TrafficGUI.holdinglane;
 import java.awt.*;
 
 public class Holdinglane {
-    int positionX;
-    int positionY;
+    public int positionX;
+    public int positionY;
     public int width;
     public int height;
     Color color;

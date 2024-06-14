@@ -25,36 +25,50 @@ public class TrafficGUI extends JPanel {
         // Background
         setBackground(Color.lightGray);
 
-        // Road
-        roadVertical= new Road(0, 350, 800, 200, Color.darkGray);
-        roadHorizontal= new Road(350, 0, 200, 800, Color.darkGray);
-        car= new Car(40, 70, -70, 380,  Color.yellow);
-        car2= new Car(70, 40, 380, -70, Color.green);
-        holdinglane= new Holdinglane(365, 300, 70, 5, Color.green);
-        strips= new ArrayList<>();
-        trafficLight= new TrafficLight(150, 150, 200, 100, 0);
+        // ### ROAD ###
+        roadVertical = new Road(0, 350, 800, 200, Color.darkGray);
+        roadHorizontal = new Road(350, 0, 200, 800, Color.darkGray);
+        holdinglane = new Holdinglane(365, 300, 70, 5, Color.green);
+        strips = new ArrayList<>();
+
+
+        // ### CARS ###
+        car = new Car(40, 70, -70, 380, Color.yellow);
+        car2 = new Car(70, 40, 380, -70, Color.green);
+
+
+        // ### TRAFFIC LIGHT ###
+        trafficLight = new TrafficLight(150, 150, 200, 100, 0);
 
         createStrips();
         animate();
     }
 
+    public static void main(String[] args) {
+        JFrame frame = new JFrame("Traffic Light Simulation");
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setSize(800, 800);
+        TrafficGUI trafficLight = new TrafficGUI();
+        frame.add(trafficLight);
+        frame.setVisible(true);
+    }
 
 
-    protected void createStrips () {
+    protected void createStrips() {
 
         // ### STRIPS ###
         // # Strips Config #
-        int stripHeight= 70;
-        int stripWidth= 5;
+        int stripHeight = 70;
+        int stripWidth = 5;
 
-        int gap= 40;
+        int gap = 40;
 
 
         // # Vertical Stirps #
 
         // Creates 5 Strips
-        int positionY=40;
-        for (int i= 0; i < 7; i++) {
+        int positionY = 40;
+        for (int i = 0; i < 7; i++) {
             Strip strip = new Strip(445, positionY, stripHeight, stripWidth, Color.white); // Create a new Strip object
             strips.add(strip);
             positionY += (gap + stripHeight);
@@ -65,35 +79,23 @@ public class TrafficGUI extends JPanel {
 
         // Creates 5 Strips
         // Position Y reset to 40px
-        positionY=40;
-        for (int i= 0; i < 7; i++) {
-            Strip strip= new Strip(positionY, 445, stripWidth, stripHeight, Color.white); // Create a new Strip object
+        positionY = 40;
+        for (int i = 0; i < 7; i++) {
+            Strip strip = new Strip(positionY, 445, stripWidth, stripHeight, Color.white); // Create a new Strip object
             strips.add(strip);
             positionY += (gap + stripHeight);
         }
 
     }
 
-    public void animate () {
-        Thread animationThread = new Thread(new Runnable() {
-            public void run() {
-                while (true) {
+    public void animate() {
 
-                    car.drive();
-                    car2.drive();
+        car.drive();
+        car2.drive();
 
-                    repaint();
+        repaint();
 
-
-                    try {
-                        Thread.sleep(10);
-                    } catch (Exception ex) {}
-                }
-            }
-        });
-        animationThread.start();
     }
-
 
 
     protected void paintComponent(Graphics g) {
@@ -111,14 +113,10 @@ public class TrafficGUI extends JPanel {
 
     }
 
+    public void run() {
+        while (true) {
 
-    public static void main(String[] args) {
-        JFrame frame = new JFrame("Traffic Light Simulation");
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setSize(800, 800);
-        TrafficGUI trafficLight = new TrafficGUI();
-        frame.add(trafficLight);
-        frame.setVisible(true);
+        }
     }
 
 
